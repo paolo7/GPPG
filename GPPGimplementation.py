@@ -34,10 +34,12 @@ def delta(qres, querypattern):
         valid = True
         for var in variables:
             value = row["v"+str(var.num)]
+            if value == None:
+                valid = False
             if isinstance(value, Literal) and var in noliteralvariables:
                 valid = False
             mapping["v"+str(var.num)] = value
-        if valid:
+        if valid and not mapping in mappings:
             mappings.append(mapping)
     return mappings
 
@@ -111,18 +113,18 @@ def test(querypattern, graphpattern, expected):
         print("  " + str(triplepattern["s"]) + " " + str(triplepattern["p"]) + " " + str(triplepattern["o"]))
     if printquery : print("QUERY:\n"+createExpandedQuery(querypattern))
     mappings = GPPG(querypattern,graphpattern)
-    print("MAPPINGS:")
+    print("MAPPINGS Found:")
     if len(expected) > 0:
         for mapping in mappings:
-            print("  mapping:")
+            print("    mapping:")
             for var in mapping:
               print("    "+var+" --> "+mapping[var])
     else:
         print("  NONE")
-    print("Expected MAPPINGS:")
+    print("MAPPINGS Expected:")
     if len(expected) > 0:
         for mapping in expected:
-            print("  mapping:")
+            print("    mapping:")
             for var in mapping:
                 print("    " + var + " --> " + mapping[var])
     else:
@@ -248,6 +250,56 @@ allTestsPassed = allTestsPassed and test(
     },
     {
         hashabledict({})
+    }
+)
+
+allTestsPassed = allTestsPassed and test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(3)}),
+        hashabledict({"s": variable(1), "p": newURI("hasResult"), "o": variable(4)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": variable(2)}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": newURI("MineElevator")}),
+hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": newURI("MineCorridor")}),
+        hashabledict({"s": variable(1), "p": newURI("hasResult"), "o": variable(4)})
+    },
+    {
+        hashabledict({"v1": URILAMBDA, "v4": URILAMBDA, "v3": newURI("MineElevator")}),
+        hashabledict({"v1": URILAMBDA, "v4": URILAMBDA, "v3": newURI("MineCorridor")})
+    }
+)
+
+allTestsPassed = allTestsPassed and test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(3)}),
+        hashabledict({"s": variable(1), "p": newURI("hasResult"), "o": variable(4)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": variable(2)}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": newURI("MineElevator")}),
+        hashabledict({"s": variable(1), "p": newURI("hasResult"), "o": variable(4)})
+    },
+    {
+        hashabledict({"v1": URILAMBDA, "v4": URILAMBDA, "v3": newURI("MineElevator")})
+    }
+)
+
+allTestsPassed = allTestsPassed and test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(3)}),
+        hashabledict({"s": variable(1), "p": newURI("hasResult"), "o": variable(4)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("NO2")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(3)}),
+        hashabledict({"s": variable(1), "p": newURI("hasResult"), "o": variable(4)})
+    },
+    {
+
     }
 )
 
