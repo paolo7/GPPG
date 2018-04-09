@@ -4,7 +4,7 @@
 
 Graph Pattern evaluation over Pattern-constrained Graphs (GPPG) is the task of computing the set of all the possible results that can be obtained by evaluating a SPARQL query graph pattern `P` over an RDF graph that only contains triples that follow a certain pattern `P'`.
 
-Both `P` and `P'` need to be basic conjunctive graph patterns (a set of triple patterns). Black nodes are not supported, and each triple in `P'` cannot have more than one occurrence of the same variable (e.g. triple <?v1, :a, ?v1> is not allowed in `P'`).
+Both `P` and `P'` need to be basic conjunctive graph patterns (a set of triple patterns). Black nodes are not supported, and each triple in `P'` cannot have more than one occurrence of the same variable (e.g. triple `<?v1, :a, ?v1>` is not allowed in `P'`).
 
 ## Running the script
 

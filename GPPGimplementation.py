@@ -8,11 +8,18 @@ URILAMBDAl = "<"+URILAMBDA+">"
 
 printquery = False
 
+# querypattern must be a basic conjunctive graph pattern (a set of triple patterns)
+# graphpattern must be a variable-independent basic conjunctive graph pattern (a set of triple
+# patterns such that no triple contains more than once occurrence of the same variable)
 def GPPG(querypattern, graphpattern):
+    # verify that 'graphpattern' is variable-independent
+    if not isVIGP(graphpattern):
+        raise ValueError('ERROR. Graph patter `graphpattern` is not variable independent. One triple has a repeated variable')
+    # compute GPPG, as the 'delta' filtering of the results of the evaluation
+    # of the expansion of 'querypattern' over the sandbox graph derived by 'graphpattern'
     g = createSandboxGraph(graphpattern)
     q = createExpandedQuery(querypattern)
-    qres = g.query(q)
-    return delta(qres, querypattern)
+    return delta(g.query(q), querypattern)
 
 
 def delta(qres, querypattern):
@@ -102,10 +109,27 @@ class variable():
     def __repr__(self):
         return "?v"+str(self.num)
 
+def isVIGP(graphpattern):
+    for triplepattern in graphpattern:
+        variables = set()
+        for element in triplepattern:
+            if isinstance(triplepattern[str(element)], variable):
+                if triplepattern[str(element)].num in variables:
+                    return False
+                variables.add(triplepattern[str(element)].num)
+    return True
+
+# Algorithm finished, test script below:
 # Test function below:
 
+tests = 0
+testsfailed = 0
+
 def test(querypattern, graphpattern, expected):
-    print("\nQUERY PATTERN:")
+    global tests, testsfailed
+    tests += 1
+    print("\nTest n. " + str(tests))
+    print("QUERY PATTERN:")
     for triplepattern in querypattern:
         print("  "+str(triplepattern["s"])+" "+str(triplepattern["p"])+" "+str(triplepattern["o"]))
     print("GRAPH PATTERN:")
@@ -114,7 +138,7 @@ def test(querypattern, graphpattern, expected):
     if printquery : print("QUERY:\n"+createExpandedQuery(querypattern))
     mappings = GPPG(querypattern,graphpattern)
     print("MAPPINGS Found:")
-    if len(expected) > 0:
+    if len(mappings) > 0:
         for mapping in mappings:
             print("    mapping:")
             for var in mapping:
@@ -145,10 +169,12 @@ def test(querypattern, graphpattern, expected):
             if equal: oneEqual = True
         if not oneEqual:
             allEqual = False
-    print("TEST "+str(allEqual))
+    print("TEST pass: "+str(allEqual))
+    if not allEqual:
+        testsfailed += 1
     return allEqual
 
-# Test script below:
+# Test cases below:
 # If a pattern shouldn't match, the 'expected' set should be empty
 # If a pattern without variables matches, the 'expected' set should have a single empty dictionary inside
 # If a pattern with variable matches, the 'expected' set should contain all the expected mappings
@@ -156,7 +182,7 @@ def test(querypattern, graphpattern, expected):
 
 allTestsPassed = True
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
         {
             hashabledict({"s":variable(1),"p":newURI("b"),"o":Literal('text')})
         } ,
@@ -169,7 +195,7 @@ allTestsPassed = allTestsPassed and test(
         }
     )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": variable(1), "p": newURI("b"), "o": newURI("c")})
     },
@@ -181,7 +207,7 @@ allTestsPassed = allTestsPassed and test(
     }
 )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": variable(1), "p": newURI("c"), "o": newURI("c")})
     },
@@ -193,7 +219,7 @@ allTestsPassed = allTestsPassed and test(
     }
 )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": variable(1), "p": newURI("b"), "o": variable(1)})
     },
@@ -205,7 +231,7 @@ allTestsPassed = allTestsPassed and test(
     }
 )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": variable(2), "p": newURI("b"), "o": variable(2)})
     },
@@ -217,7 +243,7 @@ allTestsPassed = allTestsPassed and test(
     }
 )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": newURI("a"), "p": newURI("b"), "o": Literal('text')})
     },
@@ -229,7 +255,7 @@ allTestsPassed = allTestsPassed and test(
     }
 )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": newURI("a"), "p": newURI("b"), "o": Literal('text')})
     },
@@ -241,7 +267,7 @@ allTestsPassed = allTestsPassed and test(
     }
 )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": newURI("a"), "p": newURI("b"), "o": Literal('text')})
     },
@@ -253,7 +279,205 @@ allTestsPassed = allTestsPassed and test(
     }
 )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": newURI("a"), "p": newURI("b"), "o": Literal('text')})
+    },
+    {
+
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": Literal('text')})
+    },
+    {
+
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": newURI("a"), "p": newURI("b"), "o": variable(1)})
+    },
+    {
+        hashabledict({"v1": newURI("a")})
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": variable(2)})
+    },
+    {
+        hashabledict({"v1": URILAMBDA})
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(2), "p": newURI("b"), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": variable(2)})
+    },
+    {
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA})
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(2), "p": newURI("b"), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": variable(2)})
+    },
+    {
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA})
+    }
+)
+
+try:
+    allTestsPassed = allTestsPassed & test(
+        {
+            hashabledict({"s": newURI("a"), "p": newURI("b"), "o": Literal('text')})
+        },
+        {
+            hashabledict({"s": variable(1), "p": newURI("b"), "o": variable(1)})
+        },
+        {
+            hashabledict({})
+        }
+    )
+    allTestsPassed = False
+except ValueError as e:
+    print('\nSuccessfully detected a graph pattern which is not a VIGP')
+
+
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(2), "p": newURI("b"), "o": variable(1)}),
+        hashabledict({"s": newURI("a"), "p": newURI("c"), "o": variable(2)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": Literal("k")}),
+        hashabledict({"s": variable(2), "p": newURI("b"), "o": Literal("l")}),
+        hashabledict({"s": newURI("a"), "p": newURI("c"), "o": Literal("k")})
+    },
+    {
+
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": newURI("a"), "p": newURI("b"), "o": newURI("c")})
+    },
+    {
+        hashabledict({"s": variable(1), "p": variable(2), "o": variable(3)})
+    },
+    {
+        hashabledict()
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": variable(1), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": variable(2), "o": newURI("c")})
+    },
+    {
+        hashabledict({"v1": newURI("c")})
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": variable(1), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": newURI("a"), "p": newURI("b"), "o": newURI("c")})
+    },
+    {
+
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": variable(2), "o": variable(3)})
+    },
+    {
+        hashabledict({"s": newURI("a"), "p": newURI("b"), "o": newURI("c")})
+    },
+    {
+        hashabledict({"v1": newURI("a"), "v2": newURI("b"), "v3": newURI("c")})
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(2), "p": newURI("b"), "o": variable(1)}),
+        hashabledict({"s": newURI("a"), "p": newURI("c"), "o": variable(2)})
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("b"), "o": Literal("k")}),
+        hashabledict({"s": variable(2), "p": newURI("b"), "o": Literal("l")}),
+        hashabledict({"s": newURI("a"), "p": newURI("c"), "o": newURI("b")})
+    },
+    {
+        hashabledict({"v1": Literal("l"), "v2": newURI("b")}),
+        hashabledict({"v1": Literal("k"), "v2": newURI("b")})
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": newURI("a"), "p": newURI("b"), "o": variable(1)}),
+        hashabledict({"s": newURI("d"), "p": newURI("e"), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": newURI("a"), "p": newURI("b"), "o": Literal("l")}),
+        hashabledict({"s": newURI("d"), "p": newURI("e"), "o": Literal("l")})
+    },
+    {
+        hashabledict({"v1": Literal("l")})
+    }
+)
+
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(2), "p": newURI("b"), "o": variable(1)}),
+        hashabledict({"s": variable(2), "p": newURI("c"), "o": variable(1)})
+    },
+    {
+        hashabledict({"s": newURI("a"), "p": newURI("b"), "o": Literal("l")}),
+        hashabledict({"s": newURI("a"), "p": newURI("c"), "o": Literal("l")})
+    },
+    {
+        hashabledict({"v1": Literal("l"), "v2": newURI("a")})
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
         hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(3)}),
@@ -271,7 +495,7 @@ hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": newURI
     }
 )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
         hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(3)}),
@@ -287,7 +511,7 @@ allTestsPassed = allTestsPassed and test(
     }
 )
 
-allTestsPassed = allTestsPassed and test(
+allTestsPassed = allTestsPassed & test(
     {
         hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
         hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(3)}),
@@ -303,4 +527,8 @@ allTestsPassed = allTestsPassed and test(
     }
 )
 
-print("\nAll tests passed? "+str(allTestsPassed))
+
+
+
+print("\nTests: "+str(tests-testsfailed)+"/"+str(tests))
+print("\nAll tests passed - "+str(allTestsPassed))
