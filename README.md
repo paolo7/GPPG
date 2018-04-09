@@ -12,7 +12,9 @@ The script is written in Python 3, and it requires the `rdflib` library.<sup>1</
 
 ### Test cases
 
-The script contains a number of test cases that are automatically evaluated when the script is run. To remove them, delete all the lines after `# Algorithm finished, test script below:`.
+The script contains a number of test cases that are automatically evaluated when the script is run. To remove them, delete all the lines after `# Algorithm finished, test script below:`. 
+
+Sample results of the test cases [here](results.txt) (Python console output).
 
 ### Lambda URI
 

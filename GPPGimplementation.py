@@ -479,6 +479,133 @@ allTestsPassed = allTestsPassed & test(
 
 allTestsPassed = allTestsPassed & test(
     {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(2)}),
+        hashabledict({"s": variable(2), "p": newURI("isIndoor"), "o": newURI("yes")}),
+        hashabledict({"s": variable(2), "p": newURI("humanConcentration"), "o": variable(3)}),
+        hashabledict({"s": variable(3), "p": newURI("locTag"), "o": variable(4)}),
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO")}),
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("NCO2")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(2)}),
+        hashabledict({"s": variable(1), "p": newURI("isIndoor"), "o": newURI("yes")}),
+        hashabledict({"s": variable(1), "p": newURI("isIndoor"), "o": newURI("no")}),
+        hashabledict({"s": variable(1), "p": newURI("humanConcentration"), "o": variable(2)}),
+        hashabledict({"s": newURI("a"), "p": newURI("c"), "o": Literal("l")}),
+        hashabledict({"s": variable(1), "p": newURI("locTag"), "o": Literal("DX01")}),
+        hashabledict({"s": variable(1), "p": newURI("locTag"), "o": Literal("DX02")}),
+    },
+    {
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": URILAMBDA, "v4": Literal("DX01")}),
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": URILAMBDA, "v4": Literal("DX02")})
+    }
+)
+
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(2)}),
+        hashabledict({"s": variable(2), "p": newURI("isIndoor"), "o": newURI("yes")}),
+        hashabledict({"s": variable(2), "p": newURI("humanConcentration"), "o": variable(3)}),
+        hashabledict({"s": variable(3), "p": newURI("locTag"), "o": variable(4)}),
+        hashabledict({"s": variable(3), "p": newURI("securityLevel"), "o": Literal("5")}),
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO")}),
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("NCO2")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(2)}),
+        hashabledict({"s": variable(1), "p": newURI("isIndoor"), "o": newURI("yes")}),
+        hashabledict({"s": variable(1), "p": newURI("isIndoor"), "o": newURI("no")}),
+        hashabledict({"s": variable(1), "p": newURI("humanConcentration"), "o": variable(2)}),
+        hashabledict({"s": newURI("a"), "p": newURI("c"), "o": Literal("l")}),
+        hashabledict({"s": variable(1), "p": newURI("locTag"), "o": Literal("DX01")}),
+        hashabledict({"s": variable(1), "p": newURI("locTag"), "o": Literal("DX02")}),
+        hashabledict({"s": newURI("GM1"), "p": newURI("locTag"), "o": Literal("DX02")}),
+        hashabledict({"s": newURI("GM1"), "p": newURI("securityLevel"), "o": Literal("5")}),
+        hashabledict({"s": newURI("GM2"), "p": newURI("locTag"), "o": Literal("DX01")}),
+        hashabledict({"s": newURI("GM2"), "p": newURI("securityLevel"), "o": Literal("4")}),
+    },
+    {
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": newURI("GM1"), "v4": Literal("DX01")}),
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": newURI("GM1"), "v4": Literal("DX02")})
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(2)}),
+        hashabledict({"s": variable(2), "p": newURI("isIndoor"), "o": newURI("yes")}),
+        hashabledict({"s": variable(2), "p": newURI("humanConcentration"), "o": variable(3)}),
+        hashabledict({"s": variable(3), "p": newURI("locTag"), "o": variable(5)}),
+        hashabledict({"s": variable(3), "p": newURI("securityLevel"), "o": Literal("5")}),
+        hashabledict({"s": variable(4), "p": newURI("securityLevel"), "o": Literal("4")}),
+        hashabledict({"s": variable(4), "p": newURI("locTag"), "o": Literal("DX02")}),
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO")}),
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("NCO2")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(2)}),
+        hashabledict({"s": variable(1), "p": newURI("isIndoor"), "o": newURI("yes")}),
+        hashabledict({"s": variable(1), "p": newURI("isIndoor"), "o": newURI("no")}),
+        hashabledict({"s": variable(1), "p": newURI("humanConcentration"), "o": variable(2)}),
+        hashabledict({"s": newURI("a"), "p": newURI("c"), "o": Literal("l")}),
+        hashabledict({"s": variable(1), "p": newURI("locTag"), "o": Literal("DX01")}),
+        hashabledict({"s": variable(1), "p": newURI("locTag"), "o": Literal("DX02")}),
+        hashabledict({"s": newURI("GM1"), "p": newURI("locTag"), "o": Literal("DX02")}),
+        hashabledict({"s": newURI("GM1"), "p": newURI("securityLevel"), "o": Literal("5")}),
+        hashabledict({"s": newURI("GM2"), "p": newURI("locTag"), "o": Literal("DX01")}),
+        hashabledict({"s": newURI("GM2"), "p": newURI("securityLevel"), "o": Literal("4")}),
+    },
+    {
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": newURI("GM1"), "v4": newURI("GM2"), "v5": Literal("DX01")}),
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": newURI("GM1"), "v4": newURI("GM2"), "v5": Literal("DX02")})
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(2)}),
+        hashabledict({"s": variable(2), "p": newURI("isIndoor"), "o": newURI("yes")}),
+        hashabledict({"s": variable(2), "p": newURI("humanConcentration"), "o": variable(3)}),
+        hashabledict({"s": variable(3), "p": newURI("locTag"), "o": variable(5)}),
+        hashabledict({"s": variable(3), "p": newURI("securityLevel"), "o": Literal("5")}),
+        hashabledict({"s": variable(4), "p": newURI("securityLevel"), "o": Literal("4")}),
+        hashabledict({"s": variable(4), "p": newURI("locTag"), "o": Literal("DX02")}),
+    },
+    {
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO")}),
+        hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("NCO2")}),
+        hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(2)}),
+        hashabledict({"s": variable(1), "p": newURI("isIndoor"), "o": newURI("yes")}),
+        hashabledict({"s": variable(1), "p": newURI("isIndoor"), "o": newURI("no")}),
+        hashabledict({"s": variable(1), "p": newURI("humanConcentration"), "o": variable(2)}),
+        hashabledict({"s": newURI("a"), "p": newURI("c"), "o": Literal("l")}),
+        hashabledict({"s": variable(1), "p": newURI("locTag"), "o": Literal("DX01")}),
+        hashabledict({"s": variable(1), "p": newURI("locTag"), "o": Literal("DX02")}),
+        hashabledict({"s": newURI("GM1"), "p": newURI("securityLevel"), "o": variable(1)}),
+        hashabledict({"s": newURI("GM1"), "p": newURI("locTag"), "o": Literal("DX02")}),
+        hashabledict({"s": newURI("GM1"), "p": newURI("securityLevel"), "o": Literal("5")}),
+        hashabledict({"s": newURI("GM2"), "p": newURI("locTag"), "o": Literal("DX01")}),
+        hashabledict({"s": newURI("GM2"), "p": newURI("securityLevel"), "o": Literal("4")}),
+    },
+    {
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": newURI("GM1"), "v4": newURI("GM2"), "v5": Literal("DX01")}),
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": newURI("GM1"), "v4": newURI("GM2"), "v5": Literal("DX02")}),
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": newURI("GM1"), "v4": newURI("GM1"), "v5": Literal("DX01")}),
+        hashabledict({"v1": URILAMBDA, "v2": URILAMBDA, "v3": newURI("GM1"), "v4": newURI("GM1"), "v5": Literal("DX02")}),
+    }
+)
+
+allTestsPassed = allTestsPassed & test(
+    {
         hashabledict({"s": variable(1), "p": newURI("observedProperty"), "o": newURI("CO2")}),
         hashabledict({"s": variable(1), "p": newURI("hasFeatureOfInterest"), "o": variable(3)}),
         hashabledict({"s": variable(1), "p": newURI("hasResult"), "o": variable(4)})
@@ -527,8 +654,7 @@ allTestsPassed = allTestsPassed & test(
     }
 )
 
-
-
+# Print of the test results
 
 print("\nTests: "+str(tests-testsfailed)+"/"+str(tests))
 print("\nAll tests passed - "+str(allTestsPassed))

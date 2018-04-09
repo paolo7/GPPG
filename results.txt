@@ -1,0 +1,594 @@
+Test n. 1
+QUERY PATTERN:
+  ?v1 http://example.org/b text
+GRAPH PATTERN:
+  http://example.org/a ?v1 text
+  http://example.org/a http://example.org/b text
+MAPPINGS Found:
+    mapping:
+    v1 --> http://example.org/a
+MAPPINGS Expected:
+    mapping:
+    v1 --> http://example.org/a
+TEST pass: True
+
+Test n. 2
+QUERY PATTERN:
+  ?v1 http://example.org/b http://example.org/c
+GRAPH PATTERN:
+  ?v1 http://example.org/b http://example.org/c
+MAPPINGS Found:
+    mapping:
+    v1 --> http://example.org/LAMBDA
+MAPPINGS Expected:
+    mapping:
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 3
+QUERY PATTERN:
+  ?v1 http://example.org/c http://example.org/c
+GRAPH PATTERN:
+  ?v1 http://example.org/b http://example.org/c
+MAPPINGS Found:
+  NONE
+MAPPINGS Expected:
+  NONE
+TEST pass: True
+
+Test n. 4
+QUERY PATTERN:
+  ?v1 http://example.org/b ?v1
+GRAPH PATTERN:
+  ?v1 http://example.org/b text
+MAPPINGS Found:
+  NONE
+MAPPINGS Expected:
+  NONE
+TEST pass: True
+
+Test n. 5
+QUERY PATTERN:
+  ?v2 http://example.org/b ?v2
+GRAPH PATTERN:
+  ?v1 http://example.org/b http://example.org/d
+MAPPINGS Found:
+    mapping:
+    v2 --> http://example.org/d
+MAPPINGS Expected:
+    mapping:
+    v2 --> http://example.org/d
+TEST pass: True
+
+Test n. 6
+QUERY PATTERN:
+  http://example.org/a http://example.org/b text
+GRAPH PATTERN:
+  http://example.org/a http://example.org/b text
+MAPPINGS Found:
+    mapping:
+MAPPINGS Expected:
+    mapping:
+TEST pass: True
+
+Test n. 7
+QUERY PATTERN:
+  http://example.org/a http://example.org/b text
+GRAPH PATTERN:
+  http://example.org/b http://example.org/b text
+MAPPINGS Found:
+    mapping:
+MAPPINGS Expected:
+    mapping:
+TEST pass: True
+
+Test n. 8
+QUERY PATTERN:
+  http://example.org/a http://example.org/b text
+GRAPH PATTERN:
+  http://example.org/b http://example.org/b text
+MAPPINGS Found:
+    mapping:
+MAPPINGS Expected:
+    mapping:
+TEST pass: True
+
+Test n. 9
+QUERY PATTERN:
+  ?v1 http://example.org/b ?v1
+GRAPH PATTERN:
+  http://example.org/a http://example.org/b text
+MAPPINGS Found:
+  NONE
+MAPPINGS Expected:
+  NONE
+TEST pass: True
+
+Test n. 10
+QUERY PATTERN:
+  ?v1 http://example.org/b ?v1
+GRAPH PATTERN:
+  ?v1 http://example.org/b text
+MAPPINGS Found:
+  NONE
+MAPPINGS Expected:
+  NONE
+TEST pass: True
+
+Test n. 11
+QUERY PATTERN:
+  ?v1 http://example.org/b ?v1
+GRAPH PATTERN:
+  http://example.org/a http://example.org/b ?v1
+MAPPINGS Found:
+    mapping:
+    v1 --> http://example.org/a
+MAPPINGS Expected:
+    mapping:
+    v1 --> http://example.org/a
+TEST pass: True
+
+Test n. 12
+QUERY PATTERN:
+  ?v1 http://example.org/b ?v1
+GRAPH PATTERN:
+  ?v1 http://example.org/b ?v2
+MAPPINGS Found:
+    mapping:
+    v1 --> http://example.org/LAMBDA
+MAPPINGS Expected:
+    mapping:
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 13
+QUERY PATTERN:
+  ?v2 http://example.org/b ?v1
+GRAPH PATTERN:
+  ?v1 http://example.org/b ?v2
+MAPPINGS Found:
+    mapping:
+    v2 --> http://example.org/LAMBDA
+    v1 --> http://example.org/LAMBDA
+MAPPINGS Expected:
+    mapping:
+    v2 --> http://example.org/LAMBDA
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 14
+QUERY PATTERN:
+  ?v2 http://example.org/b ?v1
+GRAPH PATTERN:
+  ?v1 http://example.org/b ?v2
+MAPPINGS Found:
+    mapping:
+    v2 --> http://example.org/LAMBDA
+    v1 --> http://example.org/LAMBDA
+MAPPINGS Expected:
+    mapping:
+    v2 --> http://example.org/LAMBDA
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 15
+QUERY PATTERN:
+  http://example.org/a http://example.org/b text
+GRAPH PATTERN:
+  ?v1 http://example.org/b ?v1
+
+Successfully detected a graph pattern which is not a VIGP
+
+Test n. 16
+QUERY PATTERN:
+  http://example.org/a http://example.org/c ?v2
+  ?v2 http://example.org/b ?v1
+GRAPH PATTERN:
+  ?v2 http://example.org/b l
+  http://example.org/a http://example.org/c k
+  ?v1 http://example.org/b k
+MAPPINGS Found:
+  NONE
+MAPPINGS Expected:
+  NONE
+TEST pass: True
+
+Test n. 17
+QUERY PATTERN:
+  http://example.org/a http://example.org/b http://example.org/c
+GRAPH PATTERN:
+  ?v1 ?v2 ?v3
+MAPPINGS Found:
+    mapping:
+MAPPINGS Expected:
+    mapping:
+TEST pass: True
+
+Test n. 18
+QUERY PATTERN:
+  ?v1 ?v1 ?v1
+GRAPH PATTERN:
+  ?v1 ?v2 http://example.org/c
+MAPPINGS Found:
+    mapping:
+    v1 --> http://example.org/c
+MAPPINGS Expected:
+    mapping:
+    v1 --> http://example.org/c
+TEST pass: True
+
+Test n. 19
+QUERY PATTERN:
+  ?v1 ?v1 ?v1
+GRAPH PATTERN:
+  http://example.org/a http://example.org/b http://example.org/c
+MAPPINGS Found:
+  NONE
+MAPPINGS Expected:
+  NONE
+TEST pass: True
+
+Test n. 20
+QUERY PATTERN:
+  ?v1 ?v2 ?v3
+GRAPH PATTERN:
+  http://example.org/a http://example.org/b http://example.org/c
+MAPPINGS Found:
+    mapping:
+    v2 --> http://example.org/b
+    v1 --> http://example.org/a
+    v3 --> http://example.org/c
+MAPPINGS Expected:
+    mapping:
+    v2 --> http://example.org/b
+    v1 --> http://example.org/a
+    v3 --> http://example.org/c
+TEST pass: True
+
+Test n. 21
+QUERY PATTERN:
+  http://example.org/a http://example.org/c ?v2
+  ?v2 http://example.org/b ?v1
+GRAPH PATTERN:
+  ?v2 http://example.org/b l
+  ?v1 http://example.org/b k
+  http://example.org/a http://example.org/c http://example.org/b
+MAPPINGS Found:
+    mapping:
+    v2 --> http://example.org/b
+    v1 --> l
+    mapping:
+    v2 --> http://example.org/b
+    v1 --> k
+MAPPINGS Expected:
+    mapping:
+    v2 --> http://example.org/b
+    v1 --> l
+    mapping:
+    v2 --> http://example.org/b
+    v1 --> k
+TEST pass: True
+
+Test n. 22
+QUERY PATTERN:
+  http://example.org/a http://example.org/b ?v1
+  http://example.org/d http://example.org/e ?v1
+GRAPH PATTERN:
+  http://example.org/d http://example.org/e l
+  http://example.org/a http://example.org/b l
+MAPPINGS Found:
+    mapping:
+    v1 --> l
+MAPPINGS Expected:
+    mapping:
+    v1 --> l
+TEST pass: True
+
+Test n. 23
+QUERY PATTERN:
+  ?v2 http://example.org/b ?v1
+  ?v2 http://example.org/c ?v1
+GRAPH PATTERN:
+  http://example.org/a http://example.org/b l
+  http://example.org/a http://example.org/c l
+MAPPINGS Found:
+    mapping:
+    v2 --> http://example.org/a
+    v1 --> l
+MAPPINGS Expected:
+    mapping:
+    v2 --> http://example.org/a
+    v1 --> l
+TEST pass: True
+
+Test n. 24
+QUERY PATTERN:
+  ?v1 http://example.org/hasFeatureOfInterest ?v2
+  ?v1 http://example.org/observedProperty http://example.org/CO
+  ?v2 http://example.org/humanConcentration ?v3
+  ?v2 http://example.org/isIndoor http://example.org/yes
+  ?v3 http://example.org/locTag ?v4
+GRAPH PATTERN:
+  http://example.org/a http://example.org/c l
+  ?v1 http://example.org/observedProperty http://example.org/NCO2
+  ?v1 http://example.org/observedProperty http://example.org/CO
+  ?v1 http://example.org/isIndoor http://example.org/no
+  ?v1 http://example.org/locTag DX01
+  ?v1 http://example.org/locTag DX02
+  ?v1 http://example.org/observedProperty http://example.org/CO2
+  ?v1 http://example.org/humanConcentration ?v2
+  ?v1 http://example.org/hasFeatureOfInterest ?v2
+  ?v1 http://example.org/isIndoor http://example.org/yes
+MAPPINGS Found:
+    mapping:
+    v3 --> http://example.org/LAMBDA
+    v2 --> http://example.org/LAMBDA
+    v4 --> DX01
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v3 --> http://example.org/LAMBDA
+    v2 --> http://example.org/LAMBDA
+    v4 --> DX02
+    v1 --> http://example.org/LAMBDA
+MAPPINGS Expected:
+    mapping:
+    v3 --> http://example.org/LAMBDA
+    v2 --> http://example.org/LAMBDA
+    v4 --> DX02
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v3 --> http://example.org/LAMBDA
+    v2 --> http://example.org/LAMBDA
+    v4 --> DX01
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 25
+QUERY PATTERN:
+  ?v1 http://example.org/hasFeatureOfInterest ?v2
+  ?v3 http://example.org/locTag ?v4
+  ?v3 http://example.org/securityLevel 5
+  ?v2 http://example.org/isIndoor http://example.org/yes
+  ?v1 http://example.org/observedProperty http://example.org/CO
+  ?v2 http://example.org/humanConcentration ?v3
+GRAPH PATTERN:
+  ?v1 http://example.org/isIndoor http://example.org/yes
+  ?v1 http://example.org/locTag DX02
+  http://example.org/GM2 http://example.org/locTag DX01
+  http://example.org/GM1 http://example.org/securityLevel 5
+  http://example.org/a http://example.org/c l
+  http://example.org/GM1 http://example.org/locTag DX02
+  http://example.org/GM2 http://example.org/securityLevel 4
+  ?v1 http://example.org/hasFeatureOfInterest ?v2
+  ?v1 http://example.org/observedProperty http://example.org/CO2
+  ?v1 http://example.org/observedProperty http://example.org/CO
+  ?v1 http://example.org/humanConcentration ?v2
+  ?v1 http://example.org/observedProperty http://example.org/NCO2
+  ?v1 http://example.org/locTag DX01
+  ?v1 http://example.org/isIndoor http://example.org/no
+MAPPINGS Found:
+    mapping:
+    v4 --> DX02
+    v2 --> http://example.org/LAMBDA
+    v3 --> http://example.org/GM1
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v4 --> DX01
+    v2 --> http://example.org/LAMBDA
+    v3 --> http://example.org/GM1
+    v1 --> http://example.org/LAMBDA
+MAPPINGS Expected:
+    mapping:
+    v3 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v4 --> DX01
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v3 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v4 --> DX02
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 26
+QUERY PATTERN:
+  ?v2 http://example.org/isIndoor http://example.org/yes
+  ?v4 http://example.org/securityLevel 4
+  ?v3 http://example.org/securityLevel 5
+  ?v1 http://example.org/hasFeatureOfInterest ?v2
+  ?v3 http://example.org/locTag ?v5
+  ?v2 http://example.org/humanConcentration ?v3
+  ?v1 http://example.org/observedProperty http://example.org/CO
+  ?v4 http://example.org/locTag DX02
+GRAPH PATTERN:
+  ?v1 http://example.org/isIndoor http://example.org/no
+  ?v1 http://example.org/locTag DX02
+  http://example.org/GM2 http://example.org/locTag DX01
+  http://example.org/GM1 http://example.org/securityLevel 5
+  http://example.org/a http://example.org/c l
+  http://example.org/GM1 http://example.org/locTag DX02
+  http://example.org/GM2 http://example.org/securityLevel 4
+  ?v1 http://example.org/observedProperty http://example.org/NCO2
+  ?v1 http://example.org/isIndoor http://example.org/yes
+  ?v1 http://example.org/humanConcentration ?v2
+  ?v1 http://example.org/observedProperty http://example.org/CO2
+  ?v1 http://example.org/locTag DX01
+  ?v1 http://example.org/observedProperty http://example.org/CO
+  ?v1 http://example.org/hasFeatureOfInterest ?v2
+MAPPINGS Found:
+    mapping:
+    v5 --> DX02
+    v2 --> http://example.org/LAMBDA
+    v3 --> http://example.org/GM1
+    v1 --> http://example.org/LAMBDA
+    v4 --> http://example.org/GM2
+    mapping:
+    v5 --> DX01
+    v2 --> http://example.org/LAMBDA
+    v3 --> http://example.org/GM1
+    v1 --> http://example.org/LAMBDA
+    v4 --> http://example.org/GM2
+MAPPINGS Expected:
+    mapping:
+    v3 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v4 --> http://example.org/GM2
+    v5 --> DX01
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v3 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v4 --> http://example.org/GM2
+    v5 --> DX02
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 27
+QUERY PATTERN:
+  ?v4 http://example.org/locTag DX02
+  ?v3 http://example.org/securityLevel 5
+  ?v2 http://example.org/humanConcentration ?v3
+  ?v1 http://example.org/observedProperty http://example.org/CO
+  ?v3 http://example.org/locTag ?v5
+  ?v4 http://example.org/securityLevel 4
+  ?v2 http://example.org/isIndoor http://example.org/yes
+  ?v1 http://example.org/hasFeatureOfInterest ?v2
+GRAPH PATTERN:
+  http://example.org/GM2 http://example.org/locTag DX01
+  http://example.org/GM1 http://example.org/securityLevel 5
+  ?v1 http://example.org/locTag DX01
+  http://example.org/GM1 http://example.org/locTag DX02
+  http://example.org/GM2 http://example.org/securityLevel 4
+  http://example.org/a http://example.org/c l
+  ?v1 http://example.org/isIndoor http://example.org/no
+  ?v1 http://example.org/hasFeatureOfInterest ?v2
+  ?v1 http://example.org/humanConcentration ?v2
+  http://example.org/GM1 http://example.org/securityLevel ?v1
+  ?v1 http://example.org/locTag DX02
+  ?v1 http://example.org/observedProperty http://example.org/CO2
+  ?v1 http://example.org/observedProperty http://example.org/NCO2
+  ?v1 http://example.org/observedProperty http://example.org/CO
+  ?v1 http://example.org/isIndoor http://example.org/yes
+MAPPINGS Found:
+    mapping:
+    v4 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v3 --> http://example.org/GM1
+    v5 --> DX02
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v4 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v3 --> http://example.org/GM1
+    v5 --> DX01
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v4 --> http://example.org/GM2
+    v2 --> http://example.org/LAMBDA
+    v3 --> http://example.org/GM1
+    v5 --> DX02
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v4 --> http://example.org/GM2
+    v2 --> http://example.org/LAMBDA
+    v3 --> http://example.org/GM1
+    v5 --> DX01
+    v1 --> http://example.org/LAMBDA
+MAPPINGS Expected:
+    mapping:
+    v3 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v4 --> http://example.org/GM2
+    v5 --> DX01
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v3 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v4 --> http://example.org/GM1
+    v5 --> DX01
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v3 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v4 --> http://example.org/GM1
+    v5 --> DX02
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v3 --> http://example.org/GM1
+    v2 --> http://example.org/LAMBDA
+    v4 --> http://example.org/GM2
+    v5 --> DX02
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 28
+QUERY PATTERN:
+  ?v1 http://example.org/observedProperty http://example.org/CO2
+  ?v1 http://example.org/hasFeatureOfInterest ?v3
+  ?v1 http://example.org/hasResult ?v4
+GRAPH PATTERN:
+  ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
+  ?v1 http://example.org/hasResult ?v4
+  ?v1 http://example.org/observedProperty ?v2
+  ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineCorridor
+MAPPINGS Found:
+    mapping:
+    v4 --> http://example.org/LAMBDA
+    v3 --> http://example.org/MineCorridor
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v4 --> http://example.org/LAMBDA
+    v3 --> http://example.org/MineElevator
+    v1 --> http://example.org/LAMBDA
+MAPPINGS Expected:
+    mapping:
+    v4 --> http://example.org/LAMBDA
+    v3 --> http://example.org/MineElevator
+    v1 --> http://example.org/LAMBDA
+    mapping:
+    v4 --> http://example.org/LAMBDA
+    v3 --> http://example.org/MineCorridor
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 29
+QUERY PATTERN:
+  ?v1 http://example.org/observedProperty http://example.org/CO2
+  ?v1 http://example.org/hasResult ?v4
+  ?v1 http://example.org/hasFeatureOfInterest ?v3
+GRAPH PATTERN:
+  ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
+  ?v1 http://example.org/hasResult ?v4
+  ?v1 http://example.org/observedProperty ?v2
+MAPPINGS Found:
+    mapping:
+    v3 --> http://example.org/MineElevator
+    v1 --> http://example.org/LAMBDA
+    v4 --> http://example.org/LAMBDA
+MAPPINGS Expected:
+    mapping:
+    v4 --> http://example.org/LAMBDA
+    v3 --> http://example.org/MineElevator
+    v1 --> http://example.org/LAMBDA
+TEST pass: True
+
+Test n. 30
+QUERY PATTERN:
+  ?v1 http://example.org/hasFeatureOfInterest ?v3
+  ?v1 http://example.org/observedProperty http://example.org/CO2
+  ?v1 http://example.org/hasResult ?v4
+GRAPH PATTERN:
+  ?v1 http://example.org/hasFeatureOfInterest ?v3
+  ?v1 http://example.org/observedProperty http://example.org/NO2
+  ?v1 http://example.org/hasResult ?v4
+MAPPINGS Found:
+  NONE
+MAPPINGS Expected:
+  NONE
+TEST pass: True
+
+Tests: 30/30
+
+All tests passed - True
+
+Process finished with exit code 0
