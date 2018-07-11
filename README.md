@@ -1,4 +1,4 @@
-# GPPG Implementation and Rule Applicability - Sample code and implementation
+# GPPG Implementation and Rule Applicability - sample code and implementation
 
 ## Overview
 
@@ -18,7 +18,7 @@ The `RuleApplicability` script contains the algorithm to expand a graph schema w
 
 ### Test cases
 
-The `GPPGimplementationTest.py` and `RuleApplicabilityTest` scripts contain a number of test cases that are automatically evaluated when the script is run.
+The `GPPGimplementationTest` and `RuleApplicabilityTest` scripts contain a number of test cases that are automatically evaluated when the script is run.
 
 Sample results of the test cases [here](results.txt) (Python console output).
 
