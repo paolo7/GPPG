@@ -1,5 +1,3 @@
-/usr/bin/python3.5 /home/paolo/Dropbox/Southampton/python/ISWC2018/RuleApplicabilityTest.py
-
 TEST SET 1
 
 Rule expansion started: initial state of the graph pattern:

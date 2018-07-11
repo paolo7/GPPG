@@ -8,6 +8,8 @@ Both `P` and `P'` need to be basic conjunctive graph patterns (a set of triple p
 
 GPPG can be used to determine the applicability of a rule on a dataset defined by a graph schema. It allows to predict the effect of the application of a rule, and therefore reason about the subsequent applicability of other rules.
 
+The code provided allows both to detect rule applicability (the `is_rule_applicable` method) and to expand a graph schema with a set of inference rules (the `expand_rules` method).
+
 ## Running the scripts
 
 The scripts are written in Python 3, and they requires the `rdflib` library.<sup>1</sup>
