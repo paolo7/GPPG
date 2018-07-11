@@ -1,4 +1,4 @@
-# Sample GPPG Implementation and Testing
+# GPPG Implementation and Rule Applicability - Sample code and implementation
 
 ## Overview
 
@@ -6,13 +6,19 @@ Graph Pattern evaluation over Pattern-constrained Graphs (GPPG) is the task of c
 
 Both `P` and `P'` need to be basic conjunctive graph patterns (a set of triple patterns). Black nodes are not supported, and each triple in `P'` cannot have more than one occurrence of the same variable (e.g. triple `<?v1, :a, ?v1>` is not allowed in `P'`).
 
-## Running the script
+GPPG can be used to determine the applicability of a rule on a dataset defined by a graph schema. It allows to predict the effect of the application of a rule, and therefore reason about the subsequent applicability of other rules.
 
-The script is written in Python 3, and it requires the `rdflib` library.<sup>1</sup>
+## Running the scripts
+
+The scripts are written in Python 3, and they requires the `rdflib` library.<sup>1</sup>
+
+The `GPPGimplementation` script contains the algorithm to solve GPPG problems.
+
+The `RuleApplicability` script contains the algorithm to expand a graph schema with a given set of rules using the GPPG solver algorithm.
 
 ### Test cases
 
-The script contains a number of test cases that are automatically evaluated when the script is run. To remove them, delete all the lines after `# Algorithm finished, test script below:`. 
+The `GPPGimplementationTest.py` and `RuleApplicabilityTest` scripts contain a number of test cases that are automatically evaluated when the script is run.
 
 Sample results of the test cases [here](results.txt) (Python console output).
 
