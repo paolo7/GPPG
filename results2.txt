@@ -2,27 +2,27 @@ TEST SET 1
 
 Rule expansion started: initial state of the graph pattern:
     GRAPH PATTERN:
-      ?v2 http://example.org/observedProperty http://example.org/WorkerTag
       ?v4 http://example.org/hasResult ?v5
-      ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
       ?v1 http://example.org/observedProperty http://example.org/CO_Danger
-
-Rule inference iteration finished. Number of new triple patterns: 1
-    GRAPH PATTERN:
       ?v2 http://example.org/observedProperty http://example.org/WorkerTag
-      ?v4 http://example.org/hasResult ?v5
-      http://example.org/TunnelA http://example.org/type http://example.org/OffLimitArea
       ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
-      ?v1 http://example.org/observedProperty http://example.org/CO_Danger
 
 Rule inference iteration finished. Number of new triple patterns: 1
     GRAPH PATTERN:
       ?v4 http://example.org/hasResult ?v5
+      ?v1 http://example.org/observedProperty http://example.org/CO_Danger
       http://example.org/TunnelA http://example.org/type http://example.org/OffLimitArea
+      ?v2 http://example.org/observedProperty http://example.org/WorkerTag
       ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
+
+Rule inference iteration finished. Number of new triple patterns: 1
+    GRAPH PATTERN:
+      ?v4 http://example.org/hasResult ?v5
+      http://example.org/TunnelA http://example.org/type http://example.org/OffLimitArea
       http://example.org/TunnelA http://example.org/type http://example.org/GeofencingViolatedTunnel
       ?v2 http://example.org/observedProperty http://example.org/WorkerTag
       ?v1 http://example.org/observedProperty http://example.org/CO_Danger
+      ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
 
 All rule inference iteration finished.
 
@@ -32,25 +32,25 @@ TEST pass: True
 
 Given schema:
     GRAPH PATTERN:
-      ?v2 http://example.org/observedProperty http://example.org/WorkerTag
       ?v4 http://example.org/hasResult ?v5
-      ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
       ?v1 http://example.org/observedProperty http://example.org/CO_Danger
+      ?v2 http://example.org/observedProperty http://example.org/WorkerTag
+      ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
 and set of rules:
 -rule:
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/OffLimitArea
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      ?v1 http://example.org/hasResult ?v3
       ?v1 http://example.org/observedProperty http://example.org/WorkerTag
+      ?v1 http://example.org/hasResult ?v3
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
   ==>
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/GeofencingViolatedTunnel
 -rule:
     GRAPH PATTERN:
       ?v1 http://example.org/hasResult 1
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
       ?v1 http://example.org/observedProperty http://example.org/CO_Danger
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
   ==>
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/OffLimitArea
@@ -58,9 +58,9 @@ and set of rules:
 the RULE:
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/OffLimitArea
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      ?v1 http://example.org/hasResult ?v3
       ?v1 http://example.org/observedProperty http://example.org/WorkerTag
+      ?v1 http://example.org/hasResult ?v3
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
 ==>
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/GeofencingViolatedTunnel
@@ -70,25 +70,25 @@ is applicable
 
 Given schema:
     GRAPH PATTERN:
-      ?v2 http://example.org/observedProperty http://example.org/WorkerTag
       ?v4 http://example.org/hasResult ?v5
-      ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
       ?v1 http://example.org/observedProperty http://example.org/CO_Danger
+      ?v2 http://example.org/observedProperty http://example.org/WorkerTag
+      ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
 and set of rules:
 -rule:
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/OffLimitArea
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      ?v1 http://example.org/hasResult ?v3
       ?v1 http://example.org/observedProperty http://example.org/WorkerTag
+      ?v1 http://example.org/hasResult ?v3
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
   ==>
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/GeofencingViolatedTunnel
 -rule:
     GRAPH PATTERN:
       ?v1 http://example.org/hasResult 1
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
       ?v1 http://example.org/observedProperty http://example.org/CO_Danger
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
   ==>
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/OffLimitArea
@@ -96,8 +96,8 @@ and set of rules:
 the RULE:
     GRAPH PATTERN:
       ?v1 http://example.org/hasResult 1
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
       ?v1 http://example.org/observedProperty http://example.org/CO_Danger
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
 ==>
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/OffLimitArea
@@ -107,17 +107,17 @@ is applicable
 
 Given schema:
     GRAPH PATTERN:
-      ?v2 http://example.org/observedProperty http://example.org/WorkerTag
       ?v4 http://example.org/hasResult ?v5
-      ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
       ?v1 http://example.org/observedProperty http://example.org/CO_Danger
+      ?v2 http://example.org/observedProperty http://example.org/WorkerTag
+      ?v3 http://example.org/hasFeatureOfInterest http://example.org/TunnelA
 and set of rules:
 -rule:
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/OffLimitArea
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      ?v1 http://example.org/hasResult ?v3
       ?v1 http://example.org/observedProperty http://example.org/WorkerTag
+      ?v1 http://example.org/hasResult ?v3
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
   ==>
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/GeofencingViolatedTunnel
@@ -125,9 +125,9 @@ and set of rules:
 the RULE:
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/OffLimitArea
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      ?v1 http://example.org/hasResult ?v3
       ?v1 http://example.org/observedProperty http://example.org/WorkerTag
+      ?v1 http://example.org/hasResult ?v3
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
 ==>
     GRAPH PATTERN:
       ?v2 http://example.org/type http://example.org/GeofencingViolatedTunnel
@@ -138,42 +138,42 @@ TEST SET 2
 
 Rule expansion started: initial state of the graph pattern:
     GRAPH PATTERN:
-      http://example.org/GM1 http://example.org/securityLevel ?v1
-      ?v1 http://example.org/isIndoor http://example.org/no
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
       ?v1 http://example.org/isIndoor http://example.org/yes
       ?v1 http://example.org/observedProperty http://example.org/CO2
       http://example.org/GM1 http://example.org/locTag DX02
-      http://example.org/GM2 http://example.org/locTag DX01
-      http://example.org/a http://example.org/c l
-      http://example.org/GM2 http://example.org/securityLevel 4
-      ?v1 http://example.org/locTag DX02
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      http://example.org/GM1 http://example.org/securityLevel 5
       ?v1 http://example.org/observedProperty http://example.org/NCO2
-      ?v1 http://example.org/observedProperty http://example.org/CO
-      ?v1 http://example.org/humanConcentration ?v2
+      ?v1 http://example.org/isIndoor http://example.org/no
+      http://example.org/GM2 http://example.org/locTag DX01
       ?v1 http://example.org/locTag DX01
+      ?v1 http://example.org/locTag DX02
+      http://example.org/GM2 http://example.org/securityLevel 4
+      http://example.org/GM1 http://example.org/securityLevel 5
+      ?v1 http://example.org/humanConcentration ?v2
+      http://example.org/GM1 http://example.org/securityLevel ?v1
+      ?v1 http://example.org/observedProperty http://example.org/CO
+      http://example.org/a http://example.org/c l
 
 Rule inference iteration finished. Number of new triple patterns: 3
     GRAPH PATTERN:
-      ?v1 http://example.org/geoFencingActive 1
-      http://example.org/GM1 http://example.org/securityLevel ?v1
-      http://example.org/GM2 http://example.org/locTag DX01
-      http://example.org/a http://example.org/c l
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      ?v1 http://example.org/locTag DX02
-      ?v1 http://example.org/observedProperty http://example.org/NCO2
-      ?v1 http://example.org/observedProperty http://example.org/CO
-      ?v1 http://example.org/humanConcentration ?v2
       ?v1 http://example.org/securityLevelAlertLoc DX02
-      ?v1 http://example.org/isIndoor http://example.org/no
-      ?v1 http://example.org/isIndoor http://example.org/yes
-      ?v1 http://example.org/observedProperty http://example.org/CO2
-      ?v1 http://example.org/securityLevelAlertLoc DX01
       http://example.org/GM1 http://example.org/locTag DX02
-      http://example.org/GM2 http://example.org/securityLevel 4
+      ?v1 http://example.org/isIndoor http://example.org/no
       http://example.org/GM1 http://example.org/securityLevel 5
+      http://example.org/GM1 http://example.org/securityLevel ?v1
+      ?v1 http://example.org/securityLevelAlertLoc DX01
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
+      ?v1 http://example.org/humanConcentration ?v2
+      ?v1 http://example.org/isIndoor http://example.org/yes
+      ?v1 http://example.org/geoFencingActive 1
       ?v1 http://example.org/locTag DX01
+      ?v1 http://example.org/locTag DX02
+      http://example.org/GM2 http://example.org/securityLevel 4
+      http://example.org/GM2 http://example.org/locTag DX01
+      ?v1 http://example.org/observedProperty http://example.org/NCO2
+      ?v1 http://example.org/observedProperty http://example.org/CO2
+      ?v1 http://example.org/observedProperty http://example.org/CO
+      http://example.org/a http://example.org/c l
 
 All rule inference iteration finished.
 
@@ -183,32 +183,32 @@ TEST pass: True
 
 Given schema:
     GRAPH PATTERN:
-      http://example.org/GM1 http://example.org/securityLevel ?v1
-      ?v1 http://example.org/isIndoor http://example.org/no
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
       ?v1 http://example.org/isIndoor http://example.org/yes
       ?v1 http://example.org/observedProperty http://example.org/CO2
       http://example.org/GM1 http://example.org/locTag DX02
-      http://example.org/GM2 http://example.org/locTag DX01
-      http://example.org/a http://example.org/c l
-      http://example.org/GM2 http://example.org/securityLevel 4
-      ?v1 http://example.org/locTag DX02
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      http://example.org/GM1 http://example.org/securityLevel 5
       ?v1 http://example.org/observedProperty http://example.org/NCO2
-      ?v1 http://example.org/observedProperty http://example.org/CO
-      ?v1 http://example.org/humanConcentration ?v2
+      ?v1 http://example.org/isIndoor http://example.org/no
+      http://example.org/GM2 http://example.org/locTag DX01
       ?v1 http://example.org/locTag DX01
+      ?v1 http://example.org/locTag DX02
+      http://example.org/GM2 http://example.org/securityLevel 4
+      http://example.org/GM1 http://example.org/securityLevel 5
+      ?v1 http://example.org/humanConcentration ?v2
+      http://example.org/GM1 http://example.org/securityLevel ?v1
+      ?v1 http://example.org/observedProperty http://example.org/CO
+      http://example.org/a http://example.org/c l
 and set of rules:
 -rule:
     GRAPH PATTERN:
-      ?v2 http://example.org/humanConcentration ?v3
       ?v2 http://example.org/isIndoor http://example.org/yes
-      ?v3 http://example.org/locTag ?v5
-      ?v3 http://example.org/securityLevel 5
-      ?v1 http://example.org/observedProperty http://example.org/CO
-      ?v4 http://example.org/securityLevel 4
-      ?v4 http://example.org/locTag DX02
       ?v1 http://example.org/hasFeatureOfInterest ?v2
+      ?v1 http://example.org/observedProperty http://example.org/CO
+      ?v4 http://example.org/locTag DX02
+      ?v3 http://example.org/securityLevel 5
+      ?v4 http://example.org/securityLevel 4
+      ?v3 http://example.org/locTag ?v5
+      ?v2 http://example.org/humanConcentration ?v3
   ==>
     GRAPH PATTERN:
       ?v2 http://example.org/securityLevelAlertLoc ?v5
@@ -216,14 +216,14 @@ and set of rules:
 
 the RULE:
     GRAPH PATTERN:
-      ?v2 http://example.org/humanConcentration ?v3
       ?v2 http://example.org/isIndoor http://example.org/yes
-      ?v3 http://example.org/locTag ?v5
-      ?v3 http://example.org/securityLevel 5
-      ?v1 http://example.org/observedProperty http://example.org/CO
-      ?v4 http://example.org/securityLevel 4
-      ?v4 http://example.org/locTag DX02
       ?v1 http://example.org/hasFeatureOfInterest ?v2
+      ?v1 http://example.org/observedProperty http://example.org/CO
+      ?v4 http://example.org/locTag DX02
+      ?v3 http://example.org/securityLevel 5
+      ?v4 http://example.org/securityLevel 4
+      ?v3 http://example.org/locTag ?v5
+      ?v2 http://example.org/humanConcentration ?v3
 ==>
     GRAPH PATTERN:
       ?v2 http://example.org/securityLevelAlertLoc ?v5
@@ -235,21 +235,21 @@ TEST SET 3
 
 Rule expansion started: initial state of the graph pattern:
     GRAPH PATTERN:
-      ?v1 http://example.org/locTag DX02
+      ?v1 http://example.org/observedProperty http://example.org/CO2
       ?v1 http://example.org/observedProperty http://example.org/CO
       http://example.org/GM1 http://example.org/locTag DX02
-      ?v1 http://example.org/isIndoor http://example.org/yes
-      http://example.org/GM2 http://example.org/locTag DX01
-      http://example.org/a http://example.org/c l
-      http://example.org/GM2 http://example.org/securityLevel 4
-      ?v1 http://example.org/humanConcentration ?v2
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      http://example.org/GM1 http://example.org/securityLevel 5
-      ?v1 http://example.org/locTag DX01
       ?v1 http://example.org/isIndoor http://example.org/no
-      http://example.org/GM1 http://example.org/securityLevel ?v1
+      ?v1 http://example.org/locTag DX02
+      ?v1 http://example.org/isIndoor http://example.org/yes
+      ?v1 http://example.org/humanConcentration ?v2
+      http://example.org/GM2 http://example.org/locTag DX01
+      ?v1 http://example.org/locTag DX01
+      http://example.org/GM2 http://example.org/securityLevel 4
+      http://example.org/GM1 http://example.org/securityLevel 5
       ?v1 http://example.org/observedProperty http://example.org/NCO2
-      ?v1 http://example.org/observedProperty http://example.org/CO2
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
+      http://example.org/GM1 http://example.org/securityLevel ?v1
+      http://example.org/a http://example.org/c l
 
 All rule inference iteration finished.
 
@@ -259,51 +259,51 @@ TEST pass: True
 
 Given schema:
     GRAPH PATTERN:
-      ?v1 http://example.org/locTag DX02
+      ?v1 http://example.org/observedProperty http://example.org/CO2
       ?v1 http://example.org/observedProperty http://example.org/CO
       http://example.org/GM1 http://example.org/locTag DX02
-      ?v1 http://example.org/isIndoor http://example.org/yes
-      http://example.org/GM2 http://example.org/locTag DX01
-      http://example.org/a http://example.org/c l
-      http://example.org/GM2 http://example.org/securityLevel 4
-      ?v1 http://example.org/humanConcentration ?v2
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      http://example.org/GM1 http://example.org/securityLevel 5
-      ?v1 http://example.org/locTag DX01
       ?v1 http://example.org/isIndoor http://example.org/no
-      http://example.org/GM1 http://example.org/securityLevel ?v1
+      ?v1 http://example.org/locTag DX02
+      ?v1 http://example.org/isIndoor http://example.org/yes
+      ?v1 http://example.org/humanConcentration ?v2
+      http://example.org/GM2 http://example.org/locTag DX01
+      ?v1 http://example.org/locTag DX01
+      http://example.org/GM2 http://example.org/securityLevel 4
+      http://example.org/GM1 http://example.org/securityLevel 5
       ?v1 http://example.org/observedProperty http://example.org/NCO2
-      ?v1 http://example.org/observedProperty http://example.org/CO2
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
+      http://example.org/GM1 http://example.org/securityLevel ?v1
+      http://example.org/a http://example.org/c l
 and set of rules:
 -rule:
     GRAPH PATTERN:
+      ?v2 http://example.org/isIndoor http://example.org/yes
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
       ?v4 http://example.org/locTag DX03
       ?v3 http://example.org/securityLevel 5
-      ?v1 http://example.org/observedProperty http://example.org/CO
       ?v2 http://example.org/humanConcentration ?v3
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      ?v2 http://example.org/isIndoor http://example.org/yes
       ?v3 http://example.org/locTag ?v5
       ?v4 http://example.org/securityLevel 4
+      ?v1 http://example.org/observedProperty http://example.org/CO
   ==>
     GRAPH PATTERN:
-      ?v2 http://example.org/geoFencingActive 1
       ?v2 http://example.org/securityLevelAlertLoc ?v5
+      ?v2 http://example.org/geoFencingActive 1
 
 the RULE:
     GRAPH PATTERN:
+      ?v2 http://example.org/isIndoor http://example.org/yes
+      ?v1 http://example.org/hasFeatureOfInterest ?v2
       ?v4 http://example.org/locTag DX03
       ?v3 http://example.org/securityLevel 5
-      ?v1 http://example.org/observedProperty http://example.org/CO
       ?v2 http://example.org/humanConcentration ?v3
-      ?v1 http://example.org/hasFeatureOfInterest ?v2
-      ?v2 http://example.org/isIndoor http://example.org/yes
       ?v3 http://example.org/locTag ?v5
       ?v4 http://example.org/securityLevel 4
+      ?v1 http://example.org/observedProperty http://example.org/CO
 ==>
     GRAPH PATTERN:
-      ?v2 http://example.org/geoFencingActive 1
       ?v2 http://example.org/securityLevelAlertLoc ?v5
+      ?v2 http://example.org/geoFencingActive 1
 is NOT applicable
 (as expected)
 
@@ -311,21 +311,21 @@ TEST SET 4
 
 Rule expansion started: initial state of the graph pattern:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
-      ?v1 http://example.org/hasResult ?v4
       ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
       ?v1 http://example.org/type http://example.org/MonitoringCentre
+      ?v1 http://example.org/hasResult ?v4
 
 Rule inference iteration finished. Number of new triple patterns: 4
     GRAPH PATTERN:
-      http://example.org/MineElevator http://example.org/hasFireRisk High
       http://example.org/MineElevator http://example.org/hasCO2level ?v3
-      ?v1 http://example.org/type http://example.org/MonitoringCentre
-      ?v1 http://example.org/hasResult ?v4
       http://example.org/MineElevator http://example.org/evacuationNeeded 1
-      http://example.org/MineElevator http://example.org/hasTemperature ?v3
-      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
+      ?v1 http://example.org/hasResult ?v4
+      http://example.org/MineElevator http://example.org/hasFireRisk High
       ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
+      ?v1 http://example.org/type http://example.org/MonitoringCentre
+      http://example.org/MineElevator http://example.org/hasTemperature ?v3
 
 All rule inference iteration finished.
 
@@ -335,97 +335,39 @@ TEST pass: True
 
 Given schema:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
-      ?v1 http://example.org/hasResult ?v4
       ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
       ?v1 http://example.org/type http://example.org/MonitoringCentre
+      ?v1 http://example.org/hasResult ?v4
 and set of rules:
 -rule:
     GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
       ?v1 http://example.org/observedProperty http://example.org/CO2
       ?v1 http://example.org/hasFeatureOfInterest ?v3
-      ?v1 http://example.org/hasResult ?v4
   ==>
     GRAPH PATTERN:
       ?v3 http://example.org/hasCO2level ?v4
 -rule:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasResult ?v4
-      ?v1 http://example.org/observedProperty http://example.org/Temperature
       ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/observedProperty http://example.org/Temperature
+      ?v1 http://example.org/hasResult ?v4
   ==>
     GRAPH PATTERN:
       ?v3 http://example.org/hasTemperature ?v4
 -rule:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasTemperature ?v4
       ?v1 http://example.org/hasCO2level ?v4
+      ?v1 http://example.org/hasTemperature ?v4
   ==>
     GRAPH PATTERN:
       ?v1 http://example.org/hasFireRisk High
 -rule:
     GRAPH PATTERN:
-      ?v1 http://example.org/type http://example.org/MonitoringCentre
-      ?v1 http://example.org/hasCO2level ?v4
-      ?v1 http://example.org/hasTemperature ?v4
-  ==>
-    GRAPH PATTERN:
-      ?v1 http://example.org/evacuationNeeded 1
--rule:
-    GRAPH PATTERN:
-      http://example.org/CentreA1 http://example.org/hasTemperature ?v4
-      http://example.org/CentreA1 http://example.org/hasCO2level ?v4
-  ==>
-    GRAPH PATTERN:
-      ?v1 http://example.org/evacuationNeeded 1
-
-the RULE:
-    GRAPH PATTERN:
-      ?v1 http://example.org/observedProperty http://example.org/CO2
-      ?v1 http://example.org/hasFeatureOfInterest ?v3
-      ?v1 http://example.org/hasResult ?v4
-==>
-    GRAPH PATTERN:
-      ?v3 http://example.org/hasCO2level ?v4
-is applicable
-(as expected)
-
-
-Given schema:
-    GRAPH PATTERN:
-      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
-      ?v1 http://example.org/hasResult ?v4
-      ?v1 http://example.org/observedProperty ?v2
-      ?v1 http://example.org/type http://example.org/MonitoringCentre
-and set of rules:
--rule:
-    GRAPH PATTERN:
-      ?v1 http://example.org/observedProperty http://example.org/CO2
-      ?v1 http://example.org/hasFeatureOfInterest ?v3
-      ?v1 http://example.org/hasResult ?v4
-  ==>
-    GRAPH PATTERN:
-      ?v3 http://example.org/hasCO2level ?v4
--rule:
-    GRAPH PATTERN:
-      ?v1 http://example.org/hasResult ?v4
-      ?v1 http://example.org/observedProperty http://example.org/Temperature
-      ?v1 http://example.org/hasFeatureOfInterest ?v3
-  ==>
-    GRAPH PATTERN:
-      ?v3 http://example.org/hasTemperature ?v4
--rule:
-    GRAPH PATTERN:
       ?v1 http://example.org/hasTemperature ?v4
       ?v1 http://example.org/hasCO2level ?v4
-  ==>
-    GRAPH PATTERN:
-      ?v1 http://example.org/hasFireRisk High
--rule:
-    GRAPH PATTERN:
       ?v1 http://example.org/type http://example.org/MonitoringCentre
-      ?v1 http://example.org/hasCO2level ?v4
-      ?v1 http://example.org/hasTemperature ?v4
   ==>
     GRAPH PATTERN:
       ?v1 http://example.org/evacuationNeeded 1
@@ -440,8 +382,66 @@ and set of rules:
 the RULE:
     GRAPH PATTERN:
       ?v1 http://example.org/hasResult ?v4
-      ?v1 http://example.org/observedProperty http://example.org/Temperature
+      ?v1 http://example.org/observedProperty http://example.org/CO2
       ?v1 http://example.org/hasFeatureOfInterest ?v3
+==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasCO2level ?v4
+is applicable
+(as expected)
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
+      ?v1 http://example.org/type http://example.org/MonitoringCentre
+      ?v1 http://example.org/hasResult ?v4
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty http://example.org/CO2
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasCO2level ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/observedProperty http://example.org/Temperature
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasTemperature ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasCO2level ?v4
+      ?v1 http://example.org/hasTemperature ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasFireRisk High
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasTemperature ?v4
+      ?v1 http://example.org/hasCO2level ?v4
+      ?v1 http://example.org/type http://example.org/MonitoringCentre
+  ==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/evacuationNeeded 1
+-rule:
+    GRAPH PATTERN:
+      http://example.org/CentreA1 http://example.org/hasTemperature ?v4
+      http://example.org/CentreA1 http://example.org/hasCO2level ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/evacuationNeeded 1
+
+the RULE:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/observedProperty http://example.org/Temperature
+      ?v1 http://example.org/hasResult ?v4
 ==>
     GRAPH PATTERN:
       ?v3 http://example.org/hasTemperature ?v4
@@ -451,39 +451,96 @@ is applicable
 
 Given schema:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
-      ?v1 http://example.org/hasResult ?v4
       ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
       ?v1 http://example.org/type http://example.org/MonitoringCentre
+      ?v1 http://example.org/hasResult ?v4
 and set of rules:
 -rule:
     GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
       ?v1 http://example.org/observedProperty http://example.org/CO2
       ?v1 http://example.org/hasFeatureOfInterest ?v3
-      ?v1 http://example.org/hasResult ?v4
   ==>
     GRAPH PATTERN:
       ?v3 http://example.org/hasCO2level ?v4
 -rule:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasResult ?v4
-      ?v1 http://example.org/observedProperty http://example.org/Temperature
       ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/observedProperty http://example.org/Temperature
+      ?v1 http://example.org/hasResult ?v4
   ==>
     GRAPH PATTERN:
       ?v3 http://example.org/hasTemperature ?v4
 -rule:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasTemperature ?v4
       ?v1 http://example.org/hasCO2level ?v4
+      ?v1 http://example.org/hasTemperature ?v4
   ==>
     GRAPH PATTERN:
       ?v1 http://example.org/hasFireRisk High
 -rule:
     GRAPH PATTERN:
+      ?v1 http://example.org/hasTemperature ?v4
+      ?v1 http://example.org/hasCO2level ?v4
       ?v1 http://example.org/type http://example.org/MonitoringCentre
+  ==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/evacuationNeeded 1
+-rule:
+    GRAPH PATTERN:
+      http://example.org/CentreA1 http://example.org/hasTemperature ?v4
+      http://example.org/CentreA1 http://example.org/hasCO2level ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/evacuationNeeded 1
+
+the RULE:
+    GRAPH PATTERN:
       ?v1 http://example.org/hasCO2level ?v4
       ?v1 http://example.org/hasTemperature ?v4
+==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasFireRisk High
+is applicable
+(as expected)
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
+      ?v1 http://example.org/type http://example.org/MonitoringCentre
+      ?v1 http://example.org/hasResult ?v4
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty http://example.org/CO2
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasCO2level ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/observedProperty http://example.org/Temperature
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasTemperature ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasCO2level ?v4
+      ?v1 http://example.org/hasTemperature ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasFireRisk High
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasTemperature ?v4
+      ?v1 http://example.org/hasCO2level ?v4
+      ?v1 http://example.org/type http://example.org/MonitoringCentre
   ==>
     GRAPH PATTERN:
       ?v1 http://example.org/evacuationNeeded 1
@@ -499,64 +556,7 @@ the RULE:
     GRAPH PATTERN:
       ?v1 http://example.org/hasTemperature ?v4
       ?v1 http://example.org/hasCO2level ?v4
-==>
-    GRAPH PATTERN:
-      ?v1 http://example.org/hasFireRisk High
-is applicable
-(as expected)
-
-
-Given schema:
-    GRAPH PATTERN:
-      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
-      ?v1 http://example.org/hasResult ?v4
-      ?v1 http://example.org/observedProperty ?v2
       ?v1 http://example.org/type http://example.org/MonitoringCentre
-and set of rules:
--rule:
-    GRAPH PATTERN:
-      ?v1 http://example.org/observedProperty http://example.org/CO2
-      ?v1 http://example.org/hasFeatureOfInterest ?v3
-      ?v1 http://example.org/hasResult ?v4
-  ==>
-    GRAPH PATTERN:
-      ?v3 http://example.org/hasCO2level ?v4
--rule:
-    GRAPH PATTERN:
-      ?v1 http://example.org/hasResult ?v4
-      ?v1 http://example.org/observedProperty http://example.org/Temperature
-      ?v1 http://example.org/hasFeatureOfInterest ?v3
-  ==>
-    GRAPH PATTERN:
-      ?v3 http://example.org/hasTemperature ?v4
--rule:
-    GRAPH PATTERN:
-      ?v1 http://example.org/hasTemperature ?v4
-      ?v1 http://example.org/hasCO2level ?v4
-  ==>
-    GRAPH PATTERN:
-      ?v1 http://example.org/hasFireRisk High
--rule:
-    GRAPH PATTERN:
-      ?v1 http://example.org/type http://example.org/MonitoringCentre
-      ?v1 http://example.org/hasCO2level ?v4
-      ?v1 http://example.org/hasTemperature ?v4
-  ==>
-    GRAPH PATTERN:
-      ?v1 http://example.org/evacuationNeeded 1
--rule:
-    GRAPH PATTERN:
-      http://example.org/CentreA1 http://example.org/hasTemperature ?v4
-      http://example.org/CentreA1 http://example.org/hasCO2level ?v4
-  ==>
-    GRAPH PATTERN:
-      ?v1 http://example.org/evacuationNeeded 1
-
-the RULE:
-    GRAPH PATTERN:
-      ?v1 http://example.org/type http://example.org/MonitoringCentre
-      ?v1 http://example.org/hasCO2level ?v4
-      ?v1 http://example.org/hasTemperature ?v4
 ==>
     GRAPH PATTERN:
       ?v1 http://example.org/evacuationNeeded 1
@@ -566,39 +566,39 @@ is applicable
 
 Given schema:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
-      ?v1 http://example.org/hasResult ?v4
       ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
       ?v1 http://example.org/type http://example.org/MonitoringCentre
+      ?v1 http://example.org/hasResult ?v4
 and set of rules:
 -rule:
     GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
       ?v1 http://example.org/observedProperty http://example.org/CO2
       ?v1 http://example.org/hasFeatureOfInterest ?v3
-      ?v1 http://example.org/hasResult ?v4
   ==>
     GRAPH PATTERN:
       ?v3 http://example.org/hasCO2level ?v4
 -rule:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasResult ?v4
-      ?v1 http://example.org/observedProperty http://example.org/Temperature
       ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/observedProperty http://example.org/Temperature
+      ?v1 http://example.org/hasResult ?v4
   ==>
     GRAPH PATTERN:
       ?v3 http://example.org/hasTemperature ?v4
 -rule:
     GRAPH PATTERN:
-      ?v1 http://example.org/hasTemperature ?v4
       ?v1 http://example.org/hasCO2level ?v4
+      ?v1 http://example.org/hasTemperature ?v4
   ==>
     GRAPH PATTERN:
       ?v1 http://example.org/hasFireRisk High
 -rule:
     GRAPH PATTERN:
-      ?v1 http://example.org/type http://example.org/MonitoringCentre
-      ?v1 http://example.org/hasCO2level ?v4
       ?v1 http://example.org/hasTemperature ?v4
+      ?v1 http://example.org/hasCO2level ?v4
+      ?v1 http://example.org/type http://example.org/MonitoringCentre
   ==>
     GRAPH PATTERN:
       ?v1 http://example.org/evacuationNeeded 1
@@ -620,7 +620,812 @@ the RULE:
 is NOT applicable
 (as expected)
 
-Tests: 14/14
+TEST SET 5
+
+Rule expansion started: initial state of the graph pattern:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
+      ?v1 http://example.org/hasResult ?v4
+
+All rule inference iteration finished.
+
+Test n. 15
+TEST pass: True
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
+      ?v1 http://example.org/hasResult ?v4
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/TunnelEntrance
+      ?v1 http://example.org/observedProperty http://example.org/CO
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasCOlevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/observedProperty ?v2
+  ==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
+
+the RULE:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/TunnelEntrance
+      ?v1 http://example.org/observedProperty http://example.org/CO
+      ?v1 http://example.org/hasResult ?v4
+==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasCOlevel ?v4
+is NOT applicable
+(as expected)
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/MineElevator
+      ?v1 http://example.org/hasResult ?v4
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasFeatureOfInterest http://example.org/TunnelEntrance
+      ?v1 http://example.org/observedProperty http://example.org/CO
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasCOlevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/observedProperty ?v2
+  ==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
+
+the RULE:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/observedProperty ?v2
+==>
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasResult ?v4
+is applicable
+(as expected)
+
+TEST SET 6
+
+Rule expansion started: initial state of the graph pattern:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/type http://example.org/Room
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+
+Rule inference iteration finished. Number of new triple patterns: 9
+    GRAPH PATTERN:
+      http://example.org/room5 http://example.org/containsHuman ?v3
+      http://example.org/room3 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      http://example.org/room7 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      http://example.org/room8 http://example.org/containsHuman ?v3
+      http://example.org/room2 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/hasMethanelevel ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      http://example.org/room4 http://example.org/containsHuman ?v3
+      http://example.org/room1 http://example.org/containsHuman ?v3
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Room
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room6 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+
+Rule inference iteration finished. Number of new triple patterns: 12
+    GRAPH PATTERN:
+      http://example.org/room3 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/hasRoomMethanelevel ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      http://example.org/room7 http://example.org/containsHuman ?v3
+      http://example.org/room8 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room6 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      http://example.org/room4 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room7 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      http://example.org/room1 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      ?v1 http://example.org/hasResult ?v4
+      http://example.org/room3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room6 http://example.org/RequiredAction http://example.org/RestoreSafety
+      http://example.org/room5 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      http://example.org/room5 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      ?v1 http://example.org/observedProperty ?v2
+      http://example.org/room8 http://example.org/containsHuman ?v3
+      http://example.org/room2 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/hasMethanelevel ?v3
+      http://example.org/room4 http://example.org/containsHuman ?v3
+      http://example.org/room1 http://example.org/containsHuman ?v3
+      http://example.org/room8 http://example.org/RequiredAction http://example.org/RestoreSafety
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room2 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room5 http://example.org/RequiredAction http://example.org/RestoreSafety
+      http://example.org/room6 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/type http://example.org/Room
+
+Rule inference iteration finished. Number of new triple patterns: 4
+    GRAPH PATTERN:
+      http://example.org/room3 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/hasRoomMethanelevel ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      http://example.org/room7 http://example.org/containsHuman ?v3
+      http://example.org/room8 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room6 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      http://example.org/room8 http://example.org/hasAlertLevel http://example.org/HighAlert
+      http://example.org/room4 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room7 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      http://example.org/room1 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/Mine http://example.org/RequiredAction http://example.org/FullEvacuation
+      ?v1 http://example.org/hasResult ?v4
+      http://example.org/room3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room6 http://example.org/RequiredAction http://example.org/RestoreSafety
+      http://example.org/room5 http://example.org/hasAlertLevel http://example.org/HighAlert
+      http://example.org/room5 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      http://example.org/room5 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      ?v1 http://example.org/observedProperty ?v2
+      http://example.org/room8 http://example.org/containsHuman ?v3
+      http://example.org/room2 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/hasMethanelevel ?v3
+      http://example.org/room4 http://example.org/containsHuman ?v3
+      http://example.org/room1 http://example.org/containsHuman ?v3
+      http://example.org/room8 http://example.org/RequiredAction http://example.org/RestoreSafety
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room2 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+      http://example.org/room6 http://example.org/hasAlertLevel http://example.org/HighAlert
+      http://example.org/room5 http://example.org/RequiredAction http://example.org/RestoreSafety
+      http://example.org/room6 http://example.org/containsHuman ?v3
+      ?v1 http://example.org/type http://example.org/Room
+
+All rule inference iteration finished.
+
+Test n. 18
+TEST pass: True
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/type http://example.org/Room
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/Room
+      ?v3 http://example.org/hasMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty http://example.org/Methane
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasLocation ?v4
+      ?v3 http://example.org/type http://example.org/Human
+      ?v4 http://example.org/type http://example.org/Room
+  ==>
+    GRAPH PATTERN:
+      ?v4 http://example.org/containsHuman ?v3
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+      ?v3 http://example.org/containsHuman ?v1
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+      ?v3 http://example.org/containsHuman http://example.org/SafetyManager
+  ==>
+    GRAPH PATTERN:
+      http://example.org/Mine http://example.org/RequiredAction http://example.org/FullEvacuation
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation ?v3
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+
+the RULE:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/Room
+      ?v3 http://example.org/hasMethanelevel ?v4
+==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+is applicable
+(as expected)
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/type http://example.org/Room
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/Room
+      ?v3 http://example.org/hasMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty http://example.org/Methane
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasLocation ?v4
+      ?v3 http://example.org/type http://example.org/Human
+      ?v4 http://example.org/type http://example.org/Room
+  ==>
+    GRAPH PATTERN:
+      ?v4 http://example.org/containsHuman ?v3
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+      ?v3 http://example.org/containsHuman ?v1
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+      ?v3 http://example.org/containsHuman http://example.org/SafetyManager
+  ==>
+    GRAPH PATTERN:
+      http://example.org/Mine http://example.org/RequiredAction http://example.org/FullEvacuation
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation ?v3
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+
+the RULE:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty http://example.org/Methane
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasResult ?v4
+==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasMethanelevel ?v4
+is applicable
+(as expected)
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/type http://example.org/Room
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/Room
+      ?v3 http://example.org/hasMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty http://example.org/Methane
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasLocation ?v4
+      ?v3 http://example.org/type http://example.org/Human
+      ?v4 http://example.org/type http://example.org/Room
+  ==>
+    GRAPH PATTERN:
+      ?v4 http://example.org/containsHuman ?v3
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+      ?v3 http://example.org/containsHuman ?v1
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+      ?v3 http://example.org/containsHuman http://example.org/SafetyManager
+  ==>
+    GRAPH PATTERN:
+      http://example.org/Mine http://example.org/RequiredAction http://example.org/FullEvacuation
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation ?v3
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+
+the RULE:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasLocation ?v4
+      ?v3 http://example.org/type http://example.org/Human
+      ?v4 http://example.org/type http://example.org/Room
+==>
+    GRAPH PATTERN:
+      ?v4 http://example.org/containsHuman ?v3
+is applicable
+(as expected)
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/type http://example.org/Room
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/Room
+      ?v3 http://example.org/hasMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty http://example.org/Methane
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasLocation ?v4
+      ?v3 http://example.org/type http://example.org/Human
+      ?v4 http://example.org/type http://example.org/Room
+  ==>
+    GRAPH PATTERN:
+      ?v4 http://example.org/containsHuman ?v3
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+      ?v3 http://example.org/containsHuman ?v1
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+      ?v3 http://example.org/containsHuman http://example.org/SafetyManager
+  ==>
+    GRAPH PATTERN:
+      http://example.org/Mine http://example.org/RequiredAction http://example.org/FullEvacuation
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation ?v3
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+
+the RULE:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+      ?v3 http://example.org/containsHuman ?v1
+==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+is applicable
+(as expected)
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/type http://example.org/Room
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/Room
+      ?v3 http://example.org/hasMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty http://example.org/Methane
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasLocation ?v4
+      ?v3 http://example.org/type http://example.org/Human
+      ?v4 http://example.org/type http://example.org/Room
+  ==>
+    GRAPH PATTERN:
+      ?v4 http://example.org/containsHuman ?v3
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+      ?v3 http://example.org/containsHuman ?v1
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+      ?v3 http://example.org/containsHuman http://example.org/SafetyManager
+  ==>
+    GRAPH PATTERN:
+      http://example.org/Mine http://example.org/RequiredAction http://example.org/FullEvacuation
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation ?v3
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+
+the RULE:
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+is applicable
+(as expected)
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/type http://example.org/Room
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/Room
+      ?v3 http://example.org/hasMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty http://example.org/Methane
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasLocation ?v4
+      ?v3 http://example.org/type http://example.org/Human
+      ?v4 http://example.org/type http://example.org/Room
+  ==>
+    GRAPH PATTERN:
+      ?v4 http://example.org/containsHuman ?v3
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+      ?v3 http://example.org/containsHuman ?v1
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+      ?v3 http://example.org/containsHuman http://example.org/SafetyManager
+  ==>
+    GRAPH PATTERN:
+      http://example.org/Mine http://example.org/RequiredAction http://example.org/FullEvacuation
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation ?v3
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+
+the RULE:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+      ?v3 http://example.org/containsHuman http://example.org/SafetyManager
+==>
+    GRAPH PATTERN:
+      http://example.org/Mine http://example.org/RequiredAction http://example.org/FullEvacuation
+is applicable
+(as expected)
+
+
+Given schema:
+    GRAPH PATTERN:
+      ?v1 http://example.org/hasLocation http://example.org/room3
+      ?v1 http://example.org/hasLocation http://example.org/room7
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasLocation http://example.org/room8
+      ?v1 http://example.org/hasLocation http://example.org/room4
+      ?v1 http://example.org/hasLocation http://example.org/room5
+      http://example.org/room8 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation http://example.org/room1
+      ?v1 http://example.org/type http://example.org/Room
+      ?v1 http://example.org/hasResult ?v4
+      ?v1 http://example.org/observedProperty ?v2
+      ?v1 http://example.org/hasLocation http://example.org/room6
+      ?v1 http://example.org/hasLocation http://example.org/room2
+      http://example.org/room5 http://example.org/type http://example.org/humanSafeRoom
+      http://example.org/room6 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/type http://example.org/Human
+and set of rules:
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/Room
+      ?v3 http://example.org/hasMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v1 http://example.org/observedProperty http://example.org/Methane
+      ?v1 http://example.org/hasFeatureOfInterest ?v3
+      ?v1 http://example.org/hasResult ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasMethanelevel ?v4
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasLocation ?v4
+      ?v3 http://example.org/type http://example.org/Human
+      ?v4 http://example.org/type http://example.org/Room
+  ==>
+    GRAPH PATTERN:
+      ?v4 http://example.org/containsHuman ?v3
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+      ?v3 http://example.org/containsHuman ?v1
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+      ?v3 http://example.org/RequiredAction http://example.org/SendEmergencyRescue
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/hasAlertLevel http://example.org/HighAlert
+      ?v3 http://example.org/containsHuman http://example.org/SafetyManager
+  ==>
+    GRAPH PATTERN:
+      http://example.org/Mine http://example.org/RequiredAction http://example.org/FullEvacuation
+-rule:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation ?v3
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+  ==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+
+the RULE:
+    GRAPH PATTERN:
+      ?v3 http://example.org/type http://example.org/humanSafeRoom
+      ?v1 http://example.org/hasLocation ?v3
+      ?v3 http://example.org/hasRoomMethanelevel ?v4
+==>
+    GRAPH PATTERN:
+      ?v3 http://example.org/RequiredAction http://example.org/RestoreSafety
+is applicable
+(as expected)
+
+Tests: 25/25
 
 All tests passed - True
 
