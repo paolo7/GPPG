@@ -22,7 +22,7 @@ The `RuleApplicability` script contains the algorithm to expand a graph schema w
 
 The `GPPGimplementationTest` and `RuleApplicabilityTest` scripts contain a number of test cases that are automatically evaluated when the script is run.
 
-Sample results of the test cases [here](results.txt) (Python console output).
+Sample results of the test cases [here](results.txt) and [here](results2.txt) (Python console output).
 
 ### Lambda URI
 
